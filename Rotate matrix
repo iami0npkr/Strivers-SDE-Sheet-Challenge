@@ -1,0 +1,25 @@
+//https://leetcode.com/problems/rotate-image/
+
+coding ninja
+#include <bits/stdc++.h>
+
+void rotate(vector<vector<int>> &mat,int start1,int end1,int start2,int end2)
+{   
+    if(start1>=end1 || start2>=end2 )
+    return;
+    int store=mat[start1][start2];
+    for(int i=start1;i<end1;i++)  mat[i][start2]=mat[i+1][start2];
+    for(int i=start2;i<end2;i++)  mat[end1][i]=mat[end1][i+1];
+    for(int i=end1;i>start1;i--)  mat[i][end2]=mat[i-1][end2];
+    for(int i=end2;i>start2;i--)  mat[start1][i]=mat[start1][i-1];
+    mat[start1][start2+1]=store;
+    rotate(mat,start1+1,end1-1,start2+1,end2-1);
+
+}
+
+void rotateMatrix(vector<vector<int>> &mat, int n, int m)
+{
+    // Write your code here
+    rotate(mat,0,n-1,0,m-1);
+
+}
